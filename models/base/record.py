@@ -8,6 +8,7 @@ from models.base import BaseModel
 if TYPE_CHECKING:
     from models.base import Team
 
+
 class Record(BaseModel, table=True):
     record_date: date = Field(nullable=False)
     year: int = Field(default=None, nullable=False, index=True)
@@ -16,5 +17,5 @@ class Record(BaseModel, table=True):
     home_losses: int = Field(default=0, nullable=False)
     away_losses: int = Field(default=0, nullable=False)
     team_id: int = Field(foreign_key="team.id")
-    
+
     team: Optional["Team"] = Relationship(back_populates="records")

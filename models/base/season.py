@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from models.base import League
     from models.base import Game
 
+
 class Season(BaseModel, table=True):
     year: int = Field(default=None, nullable=False, index=True)
     league_id: int = Field(foreign_key="league.id")
