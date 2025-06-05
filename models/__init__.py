@@ -1,3 +1,3 @@
-from .base import BaseModel, League, Team
+from models.base import BaseModel, League, Team
 
 __all__ = ["BaseModel", "League", "Team"]
