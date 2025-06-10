@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from models.base import Team
 
 
-class Game(BaseModel, table=True):
+class Game(BaseModel, table=False):
     game_date: date = Field(nullable=False)
     year: int = Field(default=None, nullable=False, index=True)
     home_team_id: int = Field(foreign_key="team.id")
