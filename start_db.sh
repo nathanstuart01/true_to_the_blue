@@ -23,6 +23,7 @@ else
     docker run -d \
       --name ${POSTGRES_CONTAINER_NAME} \
       -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
+      -e POSTGRES_DB=${POSTGRES_DB} \
       -p ${POSTGRES_PORT}:5432 \
       ${POSTGRES_IMAGE}
 fi
