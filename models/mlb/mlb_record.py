@@ -1,6 +1,7 @@
 from typing import Optional, TYPE_CHECKING
 from datetime import date
 
+from sqlalchemy import Column, ForeignKey
 from sqlmodel import Field, Relationship
 
 from models.base import BaseModel
@@ -19,6 +20,13 @@ class MLBRecord(BaseModel, table=True):
     away_wins: int = Field(default=0, nullable=False)
     home_losses: int = Field(default=0, nullable=False)
     away_losses: int = Field(default=0, nullable=False)
-    team_id: int = Field(foreign_key="mlb_team.id")
+
+    team_id: int = Field(
+        sa_column=Column(
+            "team_id",
+            ForeignKey("mlb_team.id", name="fk_mlb_record_mlb_team_id"),
+            nullable=False,
+        )
+    )
 
     team: Optional["MLBTeam"] = Relationship(back_populates="records")

@@ -1,5 +1,6 @@
 from typing import TYPE_CHECKING, Optional
 
+from sqlalchemy import Column, ForeignKey
 from sqlmodel import Field, Relationship
 
 from models.base import BaseModel
@@ -55,9 +56,28 @@ class MLBBoxScore(BaseModel, table=True):
     team_1_pitching_pitches_thrown: str = Field(default="", nullable=False)
     team_2_pitching_pitches_thrown: str = Field(default="", nullable=False)
 
-    team_1_id: int = Field(foreign_key="mlb_team.id")
-    team_2_id: int = Field(foreign_key="mlb_team.id")
-    mlb_game_id: Optional[int] = Field(default=None, foreign_key="mlb_game.id")
+    team_1_id: int = Field(
+        sa_column=Column(
+            "team_1_id",
+            ForeignKey("mlb_team.id", name="fk_mlb_boxscore_team_1_id"),
+            nullable=False,
+        )
+    )
+    team_2_id: int = Field(
+        sa_column=Column(
+            "team_2_id",
+            ForeignKey("mlb_team.id", name="fk_mlb_boxscore_team_2_id"),
+            nullable=False,
+        )
+    )
+    mlb_game_id: Optional[int] = Field(
+        default=None,
+        sa_column=Column(
+            "mlb_game_id",
+            ForeignKey("mlb_game.id", name="fk_mlb_boxscore_mlb_game_id"),
+            nullable=True,
+        ),
+    )
 
     team_1: Optional["MLBTeam"] = Relationship(back_populates="box_scores_as_team_1")
     team_2: Optional["MLBTeam"] = Relationship(back_populates="box_scores_as_team_2")
