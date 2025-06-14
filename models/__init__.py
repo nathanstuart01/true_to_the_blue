@@ -1,12 +1,11 @@
 from models.base import BaseModel, League, Team, Record, Season, Game
 from models.mlb import (
+    MLBTeamSeasonLink,
     MLBGame,
-    MLBBoxScore,
     MLBTeam,
     MLBLeague,
     MLBSeason,
     MLBRecord,
-    MLBTeamSeasonLink,
 )
 
 __all__ = [
@@ -16,11 +15,10 @@ __all__ = [
     "Record",
     "Season",
     "Game",
+    "MLBTeamSeasonLink",
     "MLBTeam",
     "MLBGame",
-    "MLBBoxScore",
     "MLBLeague",
     "MLBSeason",
     "MLBRecord",
-    "MLBTeamSeasonLink",
 ]

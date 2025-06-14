@@ -4,6 +4,7 @@ from sqlalchemy import Column, ForeignKey
 from sqlmodel import Field, Relationship
 
 from models.base import BaseModel
+from models.mlb import MLBTeamSeasonLink
 
 
 if TYPE_CHECKING:
@@ -26,6 +27,8 @@ class MLBSeason(BaseModel, table=True):
         )
     )
 
+    games: list["MLBGame"] = Relationship(back_populates="season")
     league: "MLBLeague" = Relationship(back_populates="seasons")
-    # teams: list["MLBTeam"] = Relationship(
-    #     back_populates="seasons", li_
+    teams: list["MLBTeam"] = Relationship(
+        back_populates="seasons", link_model=MLBTeamSeasonLink
+    )
