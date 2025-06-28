@@ -3,7 +3,7 @@ name = "shared_models"
 version = "0.2.1"
 description = "Shared DB models"
 authors = ["Nathan Stuart nathanstuart01@gmail.com"]
-packages = [{ include = "models" }, { include = "validators" }]
+packages = [{ include = "models" }, { include = "validators" }, { include = "utils"}]
 
 
 [tool.poetry.group.dev.dependencies]
@@ -23,4 +23,5 @@ psycopg2-binary = "^2.9.10"
 black = "^25.1.0"
 pydantic = "^2.11.7"
 pytest = "^8.4.1"
+boto3 = "^1.38.46"
 
